@@ -46,8 +46,16 @@ type UserListResult struct {
 
 // Account represents account information.
 type Account struct {
-	Balance decimal.Decimal `json:"balance"`
-	Symbol  string          `json:"symbol"`
+	DepositAddress string          `json:"deposit_address"`
+	LockBalance    decimal.Decimal `json:"lock_balance"`
+	NormalBalance  decimal.Decimal `json:"normal_balance"`
+}
+
+type CompanyAccount struct {
+	Balance           decimal.Decimal `json:"balance"`
+	FeeAccountBalance decimal.Decimal `json:"fee_account_balance"`
+	Symbol            string          `json:"symbol"`
+	TotalBalance      decimal.Decimal `json:"total_balance"`
 }
 
 // AccountResult represents account response.
@@ -57,8 +65,15 @@ type AccountResult struct {
 	Data *Account `json:"data"`
 }
 
+type CompanyAccountResult struct {
+	Code string          `json:"code"`
+	Msg  string          `json:"msg"`
+	Data *CompanyAccount `json:"data"`
+}
+
 // UserAddress represents user deposit address.
 type UserAddress struct {
+	Id      FlexInt `json:"id"`
 	UID     FlexInt `json:"uid"`
 	Address string  `json:"address"`
 	Symbol  string  `json:"symbol"`
@@ -85,10 +100,26 @@ type UserAddressListResult struct {
 
 // CoinInfo represents coin information.
 type CoinInfo struct {
-	Symbol      string  `json:"symbol"`
-	Name        string  `json:"name"`
-	Decimals    FlexInt `json:"decimals"`
-	TokenStatus FlexInt     `json:"token_status"`
+	AddressLink          string          `json:"address_link"`
+	AddressRegex         string          `json:"address_regex"`
+	AddressTagRegex      string          `json:"address_tag_regex"`
+	BaseSymbol           string          `json:"base_symbol"`
+	CoinNet              string          `json:"coin_net"`
+	ContractAddress      string          `json:"contract_address"`
+	Decimals             FlexInt         `json:"decimals"`
+	DepositConfirmation  FlexInt         `json:"deposit_confirmation"`
+	Explorer             string          `json:"explorer"`
+	Icon                 string          `json:"icon"`
+	MarginSymbol         bool            `json:"margin_symbol"`
+	MergeAddressSymbol   string          `json:"merge_address_symbol"`
+	MinDeposit           decimal.Decimal `json:"min_deposit"`
+	RealSymbol           string          `json:"real_symbol"`
+	SupportMemo          string          `json:"support_memo"`
+	SupportToken         string          `json:"support_token"`
+	Symbol               string          `json:"symbol"`
+	SymbolAlias          string          `json:"symbol_alias"`
+	TxidLink             string          `json:"txid_link"`
+	WithdrawConfirmation FlexInt         `json:"withdraw_confirmation"`
 }
 
 // CoinInfoListResult represents coin list response.
@@ -104,21 +135,30 @@ type CoinInfoListResult struct {
 
 // Withdraw represents withdrawal information.
 type Withdraw struct {
-	ID                int64           `json:"id"`
 	RequestID         string          `json:"request_id"`
-	UID               FlexInt         `json:"uid"`
-	Symbol            string          `json:"symbol"`
-	Amount            decimal.Decimal `json:"amount"`
-	WithdrawFeeSymbol string          `json:"withdraw_fee_symbol"`
-	WithdrawFee       decimal.Decimal `json:"withdraw_fee"`
-	FeeSymbol         string          `json:"fee_symbol"`
-	RealFee           decimal.Decimal `json:"real_fee"`
+	AddressFrom       string          `json:"address_from"`
 	AddressTo         string          `json:"address_to"`
-	CreatedAt         Timestamp       `json:"created_at"`
-	UpdatedAt         Timestamp       `json:"updated_at"`
-	TxID              string          `json:"txid"`
+	Amount            decimal.Decimal `json:"amount"`
+	BaseSymbol        string          `json:"base_symbol"`
+	CompanyStatus     FlexInt         `json:"company_status"`
 	Confirmations     FlexInt         `json:"confirmations"`
-	Status            FlexInt         `json:"status"`
+	ContractAddress   string          `json:"contract_address"`
+	CreatedAt         Timestamp       `json:"created_at"`
+	Email             string          `json:"email"`
+	Fee               decimal.Decimal `json:"fee"`
+	FeeSymbol         string          `json:"fee_symbol"`
+	Id                FlexInt         `json:"id"`
+	RealFee           decimal.Decimal `json:"real_fee"`
+	RequestId         string          `json:"request_id"`
+	SaasStatus        FlexInt         `json:"saas_status"`
+	Status            int64           `json:"status"`
+	Symbol            string          `json:"symbol"`
+	Txid              string          `json:"txid"`
+	TxidType          string          `json:"txid_type"`
+	Uid               int64           `json:"uid"`
+	UpdatedAt         Timestamp       `json:"updated_at"`
+	WithdrawFee       decimal.Decimal `json:"withdraw_fee"`
+	WithdrawFeeSymbol string          `json:"withdraw_fee_symbol"`
 }
 
 // WithdrawResult represents withdrawal response.
@@ -143,16 +183,21 @@ type WithdrawListResult struct {
 
 // Deposit represents deposit information.
 type Deposit struct {
-	ID            int64           `json:"id"`
-	UID           FlexInt         `json:"uid"`
-	Symbol        string          `json:"symbol"`
-	Amount        decimal.Decimal `json:"amount"`
-	AddressFrom   string          `json:"address_from"`
-	AddressTo     string          `json:"address_to"`
-	TxID          string          `json:"txid"`
-	Confirmations FlexInt         `json:"confirmations"`
-	Status        FlexInt         `json:"status"`
-	CreatedAt     Timestamp       `json:"created_at"`
+	AddressTo       string          `json:"address_to"`
+	Amount          decimal.Decimal `json:"amount"`
+	BaseSymbol      string          `json:"base_symbol"`
+	Confirmations   FlexInt         `json:"confirmations"`
+	ContractAddress string          `json:"contract_address"`
+	CreatedAt       Timestamp       `json:"created_at"`
+	Email           string          `json:"email"`
+	ID              int             `json:"id"`
+	IsMining        int             `json:"is_mining"`
+	Status          FlexInt         `json:"status"`
+	Symbol          string          `json:"symbol"`
+	Txid            string          `json:"txid"`
+	TxidType        FlexInt         `json:"txid_type"`
+	Uid             int             `json:"uid"`
+	UpdatedAt       Timestamp       `json:"updated_at"`
 }
 
 // DepositListResult represents deposit list response.
@@ -168,12 +213,21 @@ type DepositListResult struct {
 
 // MinerFee represents miner fee information.
 type MinerFee struct {
-	ID        int64           `json:"id"`
-	Symbol    string          `json:"symbol"`
-	Fee       decimal.Decimal `json:"fee"`
-	FeeSymbol string          `json:"fee_symbol"`
-	TxID      string          `json:"txid"`
-	Status    FlexInt             `json:"status"`
+	AddressFrom     string          `json:"address_from"`
+	AddressTo       string          `json:"address_to"`
+	Amount          decimal.Decimal `json:"amount"`
+	BaseSymbol      string          `json:"base_symbol"`
+	Confirmations   FlexInt         `json:"confirmations"`
+	ContractAddress string          `json:"contract_address"`
+	CreatedAt       Timestamp       `json:"created_at"`
+	Email           string          `json:"email"`
+	Fee             decimal.Decimal `json:"fee"`
+	ID              int             `json:"id"`
+	Status          FlexInt         `json:"status"`
+	Symbol          string          `json:"symbol"`
+	Txid            string          `json:"txid"`
+	TxidType        FlexInt         `json:"txid_type"`
+	UpdatedAt       decimal.Decimal `json:"updated_at"`
 }
 
 // MinerFeeListResult represents miner fee list response.

@@ -39,7 +39,11 @@ func (a *AccountAPI) GetUserAccount(uid int64, symbol string) (*types.AccountRes
 		return nil, err
 	}
 
-	return mapToResult[types.AccountResult](response)
+	var result types.AccountResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // GetUserAddress gets user deposit address for a specific cryptocurrency
@@ -64,7 +68,11 @@ func (a *AccountAPI) GetUserAddress(uid int64, symbol string) (*types.UserAddres
 		return nil, err
 	}
 
-	return mapToResult[types.UserAddressResult](response)
+	var result types.UserAddressResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // GetCompanyAccount gets company (merchant) account balance for a specific cryptocurrency
@@ -72,7 +80,7 @@ func (a *AccountAPI) GetUserAddress(uid int64, symbol string) (*types.UserAddres
 //   - symbol: Cryptocurrency symbol (e.g., 'BTC', 'ETH')
 //
 // Returns: Company account information
-func (a *AccountAPI) GetCompanyAccount(symbol string) (*types.AccountResult, error) {
+func (a *AccountAPI) GetCompanyAccount(symbol string) (*types.CompanyAccountResult, error) {
 	params := map[string]interface{}{
 		"symbol": symbol,
 	}
@@ -87,7 +95,11 @@ func (a *AccountAPI) GetCompanyAccount(symbol string) (*types.AccountResult, err
 		return nil, err
 	}
 
-	return mapToResult[types.AccountResult](response)
+	var result types.CompanyAccountResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // GetUserAddressInfo gets user address information by address
@@ -110,7 +122,11 @@ func (a *AccountAPI) GetUserAddressInfo(address string) (*types.UserAddressResul
 		return nil, err
 	}
 
-	return mapToResult[types.UserAddressResult](response)
+	var result types.UserAddressResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // SyncUserAddressList syncs user address list by max ID (pagination)
@@ -133,5 +149,9 @@ func (a *AccountAPI) SyncUserAddressList(maxID int64) (*types.UserAddressListRes
 		return nil, err
 	}
 
-	return mapToResult[types.UserAddressListResult](response)
+	var result types.UserAddressListResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }

@@ -1,9 +1,6 @@
-//go:build ignore
-// +build ignore
-
 // Package main demonstrates WaaS API usage with typed requests and responses
 // To run: go run examples/waas_example.go
-
+//go:build ignore
 package main
 
 import (
@@ -94,7 +91,7 @@ func main() {
 	if err != nil {
 		log.Printf("Failed to get account: %v", err)
 	} else {
-		fmt.Printf("Account - Symbol: %s, Balance: %s\n", account.Data.Symbol, account.Data.Balance.String())
+		fmt.Printf("Account - Symbol: %s, Balance: %s\n", account.Data.NormalBalance, account.Data.LockBalance)
 	}
 
 	// Example 7: Get user deposit address
@@ -103,7 +100,7 @@ func main() {
 	if err != nil {
 		log.Printf("Failed to get address: %v", err)
 	} else {
-		fmt.Printf("Deposit address - Symbol: %s, Address: %s\n", address.Data.Symbol, address.Data.Address)
+		fmt.Printf("Deposit address - Uid: %s, Address: %s\n", address.Data.UID, address.Data.Address)
 	}
 
 	// Example 8: Get company account
@@ -121,7 +118,7 @@ func main() {
 	if err != nil {
 		log.Printf("Failed to get address info: %v", err)
 	} else {
-		fmt.Printf("Address info - UID: %d, Symbol: %s\n", addressInfo.Data.UID, addressInfo.Data.Symbol)
+		fmt.Printf("Address info - id: %d, Symbol: %s\n", addressInfo.Data.Id, addressInfo.Data.Symbol)
 	}
 
 	// Example 10: Sync user address list
@@ -146,7 +143,7 @@ func main() {
 	} else {
 		fmt.Printf("Supported coins: %d\n", len(coins.Data))
 		for _, coin := range coins.Data {
-			fmt.Printf("  - Symbol: %s, Name: %s, Decimals: %d\n", coin.Symbol, coin.Name, coin.Decimals)
+			fmt.Printf("  - Symbol: %s, Base symbol: %s, Decimals: %d\n", coin.Symbol, coin.BaseSymbol, coin.Decimals)
 			break
 		}
 	}

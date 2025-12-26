@@ -55,7 +55,11 @@ func (b *BillingAPI) Withdraw(args *WithdrawArgs) (*types.WithdrawResult, error)
 		return nil, err
 	}
 
-	return mapToResult[types.WithdrawResult](response)
+	var result types.WithdrawResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // WithdrawList gets withdrawal records by request IDs
@@ -78,7 +82,11 @@ func (b *BillingAPI) WithdrawList(requestIDs []string) (*types.WithdrawListResul
 		return nil, err
 	}
 
-	return mapToResult[types.WithdrawListResult](response)
+	var result types.WithdrawListResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // SyncWithdrawList syncs withdrawal records by max ID (pagination)
@@ -101,7 +109,11 @@ func (b *BillingAPI) SyncWithdrawList(maxID int64) (*types.WithdrawListResult, e
 		return nil, err
 	}
 
-	return mapToResult[types.WithdrawListResult](response)
+	var result types.WithdrawListResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // DepositList gets deposit records by WaaS IDs
@@ -129,7 +141,11 @@ func (b *BillingAPI) DepositList(ids []int64) (*types.DepositListResult, error) 
 		return nil, err
 	}
 
-	return mapToResult[types.DepositListResult](response)
+	var result types.DepositListResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // SyncDepositList syncs deposit records by max ID (pagination)
@@ -152,7 +168,11 @@ func (b *BillingAPI) SyncDepositList(maxID int64) (*types.DepositListResult, err
 		return nil, err
 	}
 
-	return mapToResult[types.DepositListResult](response)
+	var result types.DepositListResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // MinerFeeList gets miner fee records by WaaS IDs
@@ -180,7 +200,11 @@ func (b *BillingAPI) MinerFeeList(ids []int64) (*types.MinerFeeListResult, error
 		return nil, err
 	}
 
-	return mapToResult[types.MinerFeeListResult](response)
+	var result types.MinerFeeListResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // SyncMinerFeeList syncs miner fee records by max ID (pagination)
@@ -203,5 +227,9 @@ func (b *BillingAPI) SyncMinerFeeList(maxID int64) (*types.MinerFeeListResult, e
 		return nil, err
 	}
 
-	return mapToResult[types.MinerFeeListResult](response)
+	var result types.MinerFeeListResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }

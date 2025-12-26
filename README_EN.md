@@ -40,7 +40,6 @@ import (
 func main() {
     // Create WaaS client using Builder pattern
     client, err := custody.NewWaasClientBuilder().
-        SetHost("https://api.custody.chainup.com").
         SetAppID("your-app-id").
         SetPrivateKey("-----BEGIN PRIVATE KEY-----\n...").
         SetPublicKey("-----BEGIN PUBLIC KEY-----\n...").
@@ -91,7 +90,6 @@ func main() {
         SetAppID("your-app-id").
         SetRsaPrivateKey("-----BEGIN PRIVATE KEY-----\n...").
         SetApiKey("your-api-key").
-        SetDomain("https://mpc-api.custody.chainup.com").
         SetDebug(true).
         Build()
     if err != nil {

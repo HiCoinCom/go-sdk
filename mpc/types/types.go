@@ -107,6 +107,12 @@ type WithdrawRecord struct {
 	DelegateFee     string          `json:"delegate_fee,omitempty"`
 	CreatedAt       Timestamp       `json:"created_at"`
 	UpdatedAt       Timestamp       `json:"updated_at"`
+	Outputs         []struct {
+		Address    string `json:"address"`
+		Amount     string `json:"amount"`
+		Memo       string `json:"memo"`
+		NeedActive bool   `json:"needActive"`
+	} `json:"outputs"`
 }
 
 // WithdrawRecordResult represents withdraw records response.
@@ -162,9 +168,9 @@ type Web3TransRecord struct {
 	From                string          `json:"from"`
 	InteractiveContract string          `json:"interactive_contract"`
 	GasPrice            decimal.Decimal `json:"gas_price"`
-	GasLimit            int64           `json:"gas_limit"`
+	GasLimit            FlexInt         `json:"gas_limit"`
 	InputData           string          `json:"input_data"`
-	TransType           int             `json:"trans_type"`
+	TransType           FlexInt         `json:"trans_type"`
 	DappName            string          `json:"dapp_name,omitempty"`
 	DappURL             string          `json:"dapp_url,omitempty"`
 	DappImg             string          `json:"dapp_img,omitempty"`
@@ -228,9 +234,9 @@ type WalletAddressListResult struct {
 
 // WalletAssets represents wallet assets.
 type WalletAssets struct {
-	Symbol       string          `json:"symbol"`
-	Balance      decimal.Decimal `json:"balance"`
-	FrozenAmount decimal.Decimal `json:"frozen_amount"`
+	NormalBalance     decimal.Decimal `json:"normal_balance"`
+	LockBalance       decimal.Decimal `json:"lock_balance"`
+	CollectingBalance decimal.Decimal `json:"collecting_balance"`
 }
 
 // WalletAssetsResult represents wallet assets response.
@@ -278,6 +284,7 @@ type DepositRecord struct {
 	CreatedAt       Timestamp       `json:"created_at"`
 	UpdatedAt       Timestamp       `json:"updated_at"`
 	RefundAmount    string          `json:"refund_amount,omitempty"`
+	KytStatus       string          `json:"kyt_status"`
 }
 
 // DepositRecordResult represents deposit records response.
@@ -391,15 +398,15 @@ type AutoCollectRecord struct {
 	WalletID        int64           `json:"sub_wallet_id"`
 	Symbol          string          `json:"symbol"`
 	Amount          decimal.Decimal `json:"amount"`
-	FeeSymbol       string          `json:"fee_symbol"`       // Fee currency, e.g.: ETH
-	Fee             decimal.Decimal `json:"fee"`              // Fee amount
-	RealFee         decimal.Decimal `json:"real_fee"`         // Actual consumed fee
+	FeeSymbol       string          `json:"fee_symbol"` // Fee currency, e.g.: ETH
+	Fee             decimal.Decimal `json:"fee"`        // Fee amount
+	RealFee         decimal.Decimal `json:"real_fee"`   // Actual consumed fee
 	CreatedAt       Timestamp       `json:"created_at"`
 	UpdatedAt       Timestamp       `json:"updated_at"`
 	AddressFrom     string          `json:"address_from"`     // Sender's address
 	AddressTo       string          `json:"address_to"`       // Consolidation address
 	Txid            string          `json:"txid"`             // Transaction hash
-	Confirmations   int             `json:"confirmations"`    // Number of block confirmations
+	Confirmations   FlexInt         `json:"confirmations"`    // Number of block confirmations
 	Status          FlexInt         `json:"status"`           // Consolidation status
 	TransType       int             `json:"trans_type"`       // 10: Consolidation, 11: Consolidation Gas
 	BaseSymbol      string          `json:"base_symbol"`      // Base currency on main chain
@@ -498,28 +505,28 @@ type TronBuyResourceResult struct {
 
 // TronBuyResourceRecord represents Tron resource purchase record.
 type TronBuyResourceRecord struct {
-	ID                int     `json:"id"`
-	RequestID         string  `json:"request_id"`
-	AddressFrom       string  `json:"address_from"`
-	ServiceChargeRate string  `json:"service_charge_rate"`
-	ServiceCharge     string  `json:"service_charge"`
-	ContractAddress   string  `json:"contract_address"`
-	AddressTo         string  `json:"address_to"`
-	ResourceType      int     `json:"resource_type"`
-	BuyType           int     `json:"buy_type"`
-	NetNum            int     `json:"net_num"`
-	EnergyNum         int     `json:"energy_num"`
-	NetTxid           string  `json:"net_txid"`
-	EnergyTxid        string  `json:"energy_txid"`
-	ReclaimNetTxid    string  `json:"reclaim_net_txid"`
-	ReclaimEnergyTxid string  `json:"reclaim_energy_txid"`
-	NetTime           int64   `json:"net_time"`
-	EnergyTime        int64   `json:"energy_time"`
-	ReclaimNetTime    int64   `json:"reclaim_net_time"`
-	ReclaimEnergyTime int64   `json:"reclaim_energy_time"`
-	NetPrice          string  `json:"net_price"`
-	EnergyPrice       string  `json:"energy_price"`
-	Status            FlexInt `json:"status"`
+	ID                int             `json:"id"`
+	RequestID         string          `json:"request_id"`
+	AddressFrom       string          `json:"address_from"`
+	ServiceChargeRate decimal.Decimal `json:"service_charge_rate"`
+	ServiceCharge     string          `json:"service_charge"`
+	ContractAddress   string          `json:"contract_address"`
+	AddressTo         string          `json:"address_to"`
+	ResourceType      FlexInt         `json:"resource_type"`
+	BuyType           FlexInt         `json:"buy_type"`
+	NetNum            FlexInt         `json:"net_num"`
+	EnergyNum         FlexInt         `json:"energy_num"`
+	NetTxid           string          `json:"net_txid"`
+	EnergyTxid        string          `json:"energy_txid"`
+	ReclaimNetTxid    string          `json:"reclaim_net_txid"`
+	ReclaimEnergyTxid string          `json:"reclaim_energy_txid"`
+	NetTime           Timestamp       `json:"net_time"`
+	EnergyTime        Timestamp       `json:"energy_time"`
+	ReclaimNetTime    Timestamp       `json:"reclaim_net_time"`
+	ReclaimEnergyTime Timestamp       `json:"reclaim_energy_time"`
+	NetPrice          decimal.Decimal `json:"net_price"`
+	EnergyPrice       decimal.Decimal `json:"energy_price"`
+	Status            FlexInt         `json:"status"`
 }
 
 // TronBuyResourceRecordResult represents Tron resource purchase records response.

@@ -74,8 +74,8 @@ func main() {
 	if err != nil {
 		log.Printf("Failed to get assets: %v", err)
 	} else if assetsResult.Data != nil {
-		fmt.Printf("Assets: Symbol=%s, Balance=%s, Frozen=%s\n",
-			assetsResult.Data.Symbol, assetsResult.Data.Balance.String(), assetsResult.Data.FrozenAmount.String())
+		fmt.Printf("Assets: NormalBalance=%s, LockBalance=%s, CollectingBalance=%s\n",
+			assetsResult.Data.NormalBalance, assetsResult.Data.LockBalance.String(), assetsResult.Data.CollectingBalance.String())
 	} else {
 		fmt.Printf("Assets response: Code=%s, Msg=%s\n", assetsResult.Code, assetsResult.Msg)
 	}
@@ -93,9 +93,11 @@ func main() {
 	addressInfo, err := walletAPI.WalletAddressInfo("0x633A84Ee0ab29d911e5466e5E1CB9cdBf5917E72", "")
 	if err != nil {
 		log.Printf("Failed to WalletAddressInfo: %v", err)
-	} else {
-		fmt.Printf("WalletAddressInfo result: %v %+v, %+v\n",
+	} else if addressInfo.Data != nil {
+		fmt.Printf("WalletAddressInfo result: WalletID=%v, AddrType=%d, MergeAddressSymbol=%s\n",
 			addressInfo.Data.WalletID, addressInfo.Data.AddrType, addressInfo.Data.MergeAddressSymbol)
+	} else {
+		fmt.Printf("WalletAddressInfo: no data found\n")
 	}
 
 	// Example 6: Withdraw (with structured types)
@@ -116,11 +118,11 @@ func main() {
 	withdrawResult2, err := withdrawAPI.Withdraw(withdrawReqWithSign, true)
 	if err != nil {
 		log.Printf("Failed to withdraw with signature: %v", err)
-	} else if withdrawResult2.Data.WithdrawID != 0 {
-		fmt.Printf("Withdraw with signature result: Code=%s, WithdrawID=%d\n",
-			withdrawResult2.Code, withdrawResult2.Data.WithdrawID)
+	} else if withdrawResult2 != nil {
+		fmt.Printf("Withdraw with signature result: OrderID=%s, WithdrawID=%d\n",
+			withdrawResult2.Data.WithdrawID)
 	} else {
-		fmt.Printf("Withdraw with signature response: Code=%s, Msg=%s\n", withdrawResult2.Code, withdrawResult2.Msg)
+		fmt.Printf("Withdraw with signature response: no data returned\n")
 	}
 
 	// Example 8: Get withdraw records
@@ -177,11 +179,10 @@ func main() {
 	web3Result, err := web3API.CreateWeb3Trans(web3Req, true)
 	if err != nil {
 		log.Printf("Failed to create Web3 transaction: %v", err)
-	} else if web3Result.Data.TransID != 0 {
-		fmt.Printf("Web3 transaction created: Code=%s, TransID=%d\n",
-			web3Result.Code, web3Result.Data.TransID)
+	} else if web3Result != nil {
+		fmt.Printf("Web3 transaction created: OrderID=%s\n", web3Result.Data.TransID)
 	} else {
-		fmt.Printf("Web3 transaction response: Code=%s, Msg=%s\n", web3Result.Code, web3Result.Msg)
+		fmt.Printf("Web3 transaction response: no data returned\n")
 	}
 
 	web3Record, err := web3API.GetWeb3Records([]string{"123456578901"})
@@ -242,10 +243,12 @@ func main() {
 	collectResult, err := autoSweepAPI.AutoCollectSubWallets([]int64{1000537, 123457}, "ETH")
 	if err != nil {
 		log.Printf("Failed to auto collect: %v", err)
-	} else {
-		fmt.Printf("Auto collect result: Code=%s, Msg=%s %v %v\n",
+	} else if collectResult.Data != nil {
+		fmt.Printf("Auto collect result: Code=%s, Msg=%s, %v %v\n",
 			collectResult.Code, collectResult.Msg,
-			collectResult.Data.CollectWalletId, collectResult.Data.FuelingWalletId)
+			collectResult.Data.CollectWalletId , collectResult.Data.FuelingWalletId)
+	} else {
+		fmt.Printf("Auto collect response: Code=%s, Msg=%s\n", collectResult.Code, collectResult.Msg)
 	}
 
 	setResult, err := autoSweepAPI.SetAutoCollectSymbol(&types.SetAutoCollectSymbolArgs{

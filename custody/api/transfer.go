@@ -58,7 +58,11 @@ func (t *TransferAPI) AccountTransfer(args *TransferArgs) (*types.TransferResult
 		return nil, err
 	}
 
-	return mapToResult[types.TransferResult](response)
+	var result types.TransferResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // GetAccountTransferList gets account transfer list by request IDs
@@ -81,7 +85,11 @@ func (t *TransferAPI) GetAccountTransferList(requestIDs []string) (*types.Transf
 		return nil, err
 	}
 
-	return mapToResult[types.TransferListResult](response)
+	var result types.TransferListResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // SyncAccountTransferList syncs account transfer list by max ID (pagination)
@@ -104,5 +112,9 @@ func (t *TransferAPI) SyncAccountTransferList(maxID int64) (*types.TransferListR
 		return nil, err
 	}
 
-	return mapToResult[types.TransferListResult](response)
+	var result types.TransferListResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }

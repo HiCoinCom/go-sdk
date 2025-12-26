@@ -2,9 +2,8 @@
 package api
 
 import (
-	"encoding/json"
-
 	"chainup.com/go-sdk/custody/types"
+	"encoding/json"
 )
 
 // UserAPI provides user management and registration operations
@@ -19,17 +18,13 @@ func NewUserAPI(config ConfigProvider) *UserAPI {
 	}
 }
 
-// mapToResult converts map response to typed result
-func mapToResult[T any](response map[string]interface{}) (*T, error) {
+// unmarshalResponse converts map response to the given result pointer.
+func unmarshalResponse(response map[string]interface{}, result interface{}) error {
 	jsonBytes, err := json.Marshal(response)
 	if err != nil {
-		return nil, err
+		return err
 	}
-	var result T
-	if err := json.Unmarshal(jsonBytes, &result); err != nil {
-		return nil, err
-	}
-	return &result, nil
+	return json.Unmarshal(jsonBytes, result)
 }
 
 // RegisterMobileUser registers a new user using mobile phone
@@ -54,7 +49,11 @@ func (u *UserAPI) RegisterMobileUser(country, mobile string) (*types.UserInfoRes
 		return nil, err
 	}
 
-	return mapToResult[types.UserInfoResult](response)
+	var result types.UserInfoResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // RegisterEmailUser registers a new user using email
@@ -77,7 +76,11 @@ func (u *UserAPI) RegisterEmailUser(email string) (*types.UserInfoResult, error)
 		return nil, err
 	}
 
-	return mapToResult[types.UserInfoResult](response)
+	var result types.UserInfoResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // GetMobileUser gets user information by mobile phone
@@ -102,7 +105,11 @@ func (u *UserAPI) GetMobileUser(country, mobile string) (*types.UserInfoResult, 
 		return nil, err
 	}
 
-	return mapToResult[types.UserInfoResult](response)
+	var result types.UserInfoResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // GetEmailUser gets user information by email
@@ -125,7 +132,11 @@ func (u *UserAPI) GetEmailUser(email string) (*types.UserInfoResult, error) {
 		return nil, err
 	}
 
-	return mapToResult[types.UserInfoResult](response)
+	var result types.UserInfoResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }
 
 // SyncUserList syncs user list by max ID (pagination)
@@ -148,5 +159,9 @@ func (u *UserAPI) SyncUserList(maxID int64) (*types.UserListResult, error) {
 		return nil, err
 	}
 
-	return mapToResult[types.UserListResult](response)
+	var result types.UserListResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }

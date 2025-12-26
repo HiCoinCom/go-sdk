@@ -32,5 +32,9 @@ func (c *CoinAPI) GetCoinList() (*types.CoinInfoListResult, error) {
 		return nil, err
 	}
 
-	return mapToResult[types.CoinInfoListResult](response)
+	var result types.CoinInfoListResult
+	if err := unmarshalResponse(response, &result); err != nil {
+		return nil, err
+	}
+	return &result, nil
 }

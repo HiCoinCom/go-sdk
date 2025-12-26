@@ -40,7 +40,6 @@ import (
 func main() {
     // 使用 Builder 模式创建 WaaS 客户端
     client, err := custody.NewWaasClientBuilder().
-        SetHost("https://api.custody.chainup.com").
         SetAppID("your-app-id").
         SetPrivateKey("-----BEGIN PRIVATE KEY-----\n...").
         SetPublicKey("-----BEGIN PUBLIC KEY-----\n...").
@@ -99,7 +98,6 @@ import (
 func main() {
     // 创建 MPC 客户端
     client, err := mpc.NewMpcClientBuilder().
-        SetDomain("https://mpc-api.custody.chainup.com").
         SetAppID("your-app-id").
         SetRsaPrivateKey("-----BEGIN PRIVATE KEY-----\n...").
         SetWaasPublicKey("-----BEGIN PUBLIC KEY-----\n...").

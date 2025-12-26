@@ -252,6 +252,4 @@ func BenchmarkSigning(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		_, _ = provider.SignWithPrivateKey(data)
 	}
-
-	sigStr := ``
 }
