@@ -119,7 +119,7 @@ func main() {
 	if err != nil {
 		log.Printf("Failed to withdraw with signature: %v", err)
 	} else if withdrawResult2 != nil {
-		fmt.Printf("Withdraw with signature result: OrderID=%s, WithdrawID=%d\n",
+		fmt.Printf("Withdraw with signature result: WithdrawID=%d\n",
 			withdrawResult2.Data.WithdrawID)
 	} else {
 		fmt.Printf("Withdraw with signature response: no data returned\n")
