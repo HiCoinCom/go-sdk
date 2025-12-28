@@ -189,9 +189,14 @@ type Web3RecordResult struct {
 }
 
 // Web3AccelerationArgs represents Web3 transaction acceleration arguments.
+// See: https://custodydocs-en.chainup.com/api-references/mpc-apis/apis/web3/web3-pending
 type Web3AccelerationArgs struct {
-	RequestID string          `json:"request_id"`
-	GasPrice  decimal.Decimal `json:"gas_price"`
+	// TransID is the Web3 transaction ID (required)
+	TransID int `json:"trans_id"`
+	// GasPrice is the gas fee in Gwei (required)
+	GasPrice string `json:"gas_price"`
+	// GasLimit is the gas limit fee (required)
+	GasLimit string `json:"gas_limit"`
 }
 
 // -----------------------------------------------------------------------------

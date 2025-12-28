@@ -212,60 +212,60 @@ go-sdk/
 
 ### WaaS API
 
-| API Class    | Method                                | Description      |
-| ------------ | ------------------------------------- | ---------------- |
-| UserAPI      | `RegisterMobileUser(country, mobile)` | Register by mobile |
-| UserAPI      | `RegisterEmailUser(email)`            | Register by email |
-| UserAPI      | `GetMobileUser(country, mobile)`      | Get user by mobile |
-| UserAPI      | `GetEmailUser(email)`                 | Get user by email |
-| UserAPI      | `SyncUserList(maxID)`                 | Sync user list   |
-| AccountAPI   | `GetUserAccount(uid, symbol)`         | Get account balance |
-| AccountAPI   | `GetUserAddress(uid, symbol)`         | Get deposit address |
-| AccountAPI   | `GetCompanyAccount(symbol)`           | Get company account |
-| AccountAPI   | `GetUserAddressInfo(address)`         | Get address info |
-| AccountAPI   | `SyncUserAddressList(maxID)`          | Sync address list |
-| BillingAPI   | `Withdraw(args)`                      | Initiate withdraw |
-| BillingAPI   | `WithdrawList(requestIDs)`            | Get withdraw records |
-| BillingAPI   | `SyncWithdrawList(maxID)`             | Sync withdraw records |
-| BillingAPI   | `DepositList(ids)`                    | Get deposit records |
-| BillingAPI   | `SyncDepositList(maxID)`              | Sync deposit records |
-| BillingAPI   | `MinerFeeList(ids)`                   | Get miner fee records |
-| BillingAPI   | `SyncMinerFeeList(maxID)`             | Sync miner fee records |
-| CoinAPI      | `GetCoinList()`                       | Get coin list    |
-| TransferAPI  | `AccountTransfer(args)`               | Internal transfer |
-| TransferAPI  | `GetAccountTransferList(requestIDs)`  | Get transfer records |
-| TransferAPI  | `SyncAccountTransferList(maxID)`      | Sync transfer records |
-| AsyncNotifyAPI | `NotifyRequest(req)`                | Decrypt async notification |
+| API Class      | Method                                | Description                |
+| -------------- | ------------------------------------- | -------------------------- |
+| UserAPI        | `RegisterMobileUser(country, mobile)` | Register by mobile         |
+| UserAPI        | `RegisterEmailUser(email)`            | Register by email          |
+| UserAPI        | `GetMobileUser(country, mobile)`      | Get user by mobile         |
+| UserAPI        | `GetEmailUser(email)`                 | Get user by email          |
+| UserAPI        | `SyncUserList(maxID)`                 | Sync user list             |
+| AccountAPI     | `GetUserAccount(uid, symbol)`         | Get account balance        |
+| AccountAPI     | `GetUserAddress(uid, symbol)`         | Get deposit address        |
+| AccountAPI     | `GetCompanyAccount(symbol)`           | Get company account        |
+| AccountAPI     | `GetUserAddressInfo(address)`         | Get address info           |
+| AccountAPI     | `SyncUserAddressList(maxID)`          | Sync address list          |
+| BillingAPI     | `Withdraw(args)`                      | Initiate withdraw          |
+| BillingAPI     | `WithdrawList(requestIDs)`            | Get withdraw records       |
+| BillingAPI     | `SyncWithdrawList(maxID)`             | Sync withdraw records      |
+| BillingAPI     | `DepositList(ids)`                    | Get deposit records        |
+| BillingAPI     | `SyncDepositList(maxID)`              | Sync deposit records       |
+| BillingAPI     | `MinerFeeList(ids)`                   | Get miner fee records      |
+| BillingAPI     | `SyncMinerFeeList(maxID)`             | Sync miner fee records     |
+| CoinAPI        | `GetCoinList()`                       | Get coin list              |
+| TransferAPI    | `AccountTransfer(args)`               | Internal transfer          |
+| TransferAPI    | `GetAccountTransferList(requestIDs)`  | Get transfer records       |
+| TransferAPI    | `SyncAccountTransferList(maxID)`      | Sync transfer records      |
+| AsyncNotifyAPI | `NotifyRequest(req)`                  | Decrypt async notification |
 
 ### MPC API
 
-| API Class        | Method                                    | Description          |
-| ---------------- | ----------------------------------------- | -------------------- |
-| WalletAPI        | `CreateWallet(name, status)`              | Create wallet        |
-| WalletAPI        | `CreateWalletAddress(walletID, symbol)`   | Create address       |
-| WalletAPI        | `QueryWalletAddress(args)`                | Query wallet addresses |
-| WalletAPI        | `GetWalletAssets(walletID, symbol)`       | Get wallet assets    |
-| WalletAPI        | `ChangeWalletShowStatus(ids, status)`     | Change wallet visibility |
-| WalletAPI        | `WalletAddressInfo(address, memo)`        | Get address info     |
-| DepositAPI       | `GetDepositRecords(ids)`                  | Get deposit records  |
-| DepositAPI       | `SyncDepositRecords(maxID)`               | Sync deposit records |
-| WithdrawAPI      | `Withdraw(req, needSign)`                 | Initiate withdraw    |
-| WithdrawAPI      | `GetWithdrawRecords(requestIDs)`          | Get withdraw records |
-| WithdrawAPI      | `SyncWithdrawRecords(maxID)`              | Sync withdraw records |
-| Web3API          | `CreateWeb3Trans(req, needSign)`          | Create Web3 transaction |
-| Web3API          | `AccelerationWeb3Trans(args)`             | Accelerate Web3 transaction |
-| Web3API          | `GetWeb3Records(requestIDs)`              | Get Web3 records     |
-| Web3API          | `SyncWeb3Records(maxID)`                  | Sync Web3 records    |
-| AutoSweepAPI     | `AutoCollectSubWallets(ids, symbol)`      | Auto collect         |
-| AutoSweepAPI     | `SetAutoCollectSymbol(args)`              | Set auto collect symbol |
-| AutoSweepAPI     | `SyncAutoCollectRecords(maxID)`           | Sync collect records |
-| WorkSpaceAPI     | `GetSupportMainChain()`                   | Get supported main chains |
-| WorkSpaceAPI     | `GetCoinDetails(args)`                    | Get coin details     |
-| WorkSpaceAPI     | `GetLastBlockHeight(mainChainSymbol)`     | Get latest block height |
-| TronResourceAPI  | `CreateTronDelegate(args)`                | Create TRON delegate |
-| TronResourceAPI  | `GetBuyResourceRecords(requestIDs)`       | Get resource purchase records |
-| TronResourceAPI  | `SyncBuyResourceRecords(maxID)`           | Sync resource purchase records |
-| NotifyAPI        | `NotifyRequest(req)`                      | Decrypt async notification |
+| API Class       | Method                                  | Description                    |
+| --------------- | --------------------------------------- | ------------------------------ |
+| WalletAPI       | `CreateWallet(name, status)`            | Create wallet                  |
+| WalletAPI       | `CreateWalletAddress(walletID, symbol)` | Create address                 |
+| WalletAPI       | `QueryWalletAddress(args)`              | Query wallet addresses         |
+| WalletAPI       | `GetWalletAssets(walletID, symbol)`     | Get wallet assets              |
+| WalletAPI       | `ChangeWalletShowStatus(ids, status)`   | Change wallet visibility       |
+| WalletAPI       | `WalletAddressInfo(address, memo)`      | Get address info               |
+| DepositAPI      | `GetDepositRecords(ids)`                | Get deposit records            |
+| DepositAPI      | `SyncDepositRecords(maxID)`             | Sync deposit records           |
+| WithdrawAPI     | `Withdraw(req, needSign)`               | Initiate withdraw              |
+| WithdrawAPI     | `GetWithdrawRecords(requestIDs)`        | Get withdraw records           |
+| WithdrawAPI     | `SyncWithdrawRecords(maxID)`            | Sync withdraw records          |
+| Web3API         | `CreateWeb3Trans(req, needSign)`        | Create Web3 transaction        |
+| Web3API         | `AccelerationWeb3Trans(args)`           | Accelerate Web3 transaction    |
+| Web3API         | `GetWeb3Records(requestIDs)`            | Get Web3 records               |
+| Web3API         | `SyncWeb3Records(maxID)`                | Sync Web3 records              |
+| AutoSweepAPI    | `AutoCollectSubWallets(ids, symbol)`    | Auto collect                   |
+| AutoSweepAPI    | `SetAutoCollectSymbol(args)`            | Set auto collect symbol        |
+| AutoSweepAPI    | `SyncAutoCollectRecords(maxID)`         | Sync collect records           |
+| WorkSpaceAPI    | `GetSupportMainChain()`                 | Get supported main chains      |
+| WorkSpaceAPI    | `GetCoinDetails(args)`                  | Get coin details               |
+| WorkSpaceAPI    | `GetLastBlockHeight(mainChainSymbol)`   | Get latest block height        |
+| TronResourceAPI | `CreateTronDelegate(args)`              | Create TRON delegate           |
+| TronResourceAPI | `GetBuyResourceRecords(requestIDs)`     | Get resource purchase records  |
+| TronResourceAPI | `SyncBuyResourceRecords(maxID)`         | Sync resource purchase records |
+| NotifyAPI       | `NotifyRequest(req)`                    | Decrypt async notification     |
 
 ## 📋 Type Definitions
 
@@ -294,6 +294,14 @@ type Web3TransRequest struct {
     GasLimit            int64           `json:"gas_limit"`
     InputData           string          `json:"input_data"`
     TransType           string          `json:"trans_type"`
+}
+
+// Web3 transaction acceleration arguments
+// Doc: https://custodydocs-en.chainup.com/api-references/mpc-apis/apis/web3/web3-pending
+type Web3AccelerationArgs struct {
+    TransID  int    `json:"trans_id"`   // Web3 transaction ID (required)
+    GasPrice string `json:"gas_price"`  // Gas fee in Gwei (required)
+    GasLimit string `json:"gas_limit"`  // Gas limit (required)
 }
 
 // Wallet display status

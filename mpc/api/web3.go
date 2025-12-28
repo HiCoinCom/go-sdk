@@ -99,18 +99,20 @@ func (w *Web3API) CreateWeb3Trans(req *types.Web3TransRequest, needTransactionSi
 }
 
 // AccelerationWeb3Trans accelerates a Web3 transaction
-// args: Acceleration arguments (request_id, gas_price)
+// args: Acceleration arguments (trans_id, gas_price, gas_limit)
+// See: https://custodydocs-en.chainup.com/api-references/mpc-apis/apis/web3/web3-pending
 func (w *Web3API) AccelerationWeb3Trans(args *types.Web3AccelerationArgs) (bool, error) {
 	if args == nil {
 		return false, errors.New("acceleration args is required")
 	}
 
 	params := map[string]interface{}{
-		"request_id": args.RequestID,
-		"gas_price":  args.GasPrice.String(),
+		"trans_id":  args.TransID,
+		"gas_price": args.GasPrice,
+		"gas_limit": args.GasLimit,
 	}
 
-	response, err := w.Post("/api/mpc/web3/acceleration_transaction", params)
+	response, err := w.Post("/api/mpc/web3/pending", params)
 	if err != nil {
 		return false, err
 	}

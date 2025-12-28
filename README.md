@@ -212,60 +212,60 @@ go-sdk/
 
 ### WaaS API
 
-| API 类       | 方法                                  | 说明         |
-| ------------ | ------------------------------------- | ------------ |
-| UserAPI      | `RegisterMobileUser(country, mobile)` | 手机注册     |
-| UserAPI      | `RegisterEmailUser(email)`            | 邮箱注册     |
-| UserAPI      | `GetMobileUser(country, mobile)`      | 根据手机获取用户 |
-| UserAPI      | `GetEmailUser(email)`                 | 根据邮箱获取用户 |
-| UserAPI      | `SyncUserList(maxID)`                 | 同步用户列表 |
-| AccountAPI   | `GetUserAccount(uid, symbol)`         | 获取账户余额 |
-| AccountAPI   | `GetUserAddress(uid, symbol)`         | 获取充值地址 |
-| AccountAPI   | `GetCompanyAccount(symbol)`           | 获取商户账户 |
-| AccountAPI   | `GetUserAddressInfo(address)`         | 获取地址信息 |
-| AccountAPI   | `SyncUserAddressList(maxID)`          | 同步地址列表 |
-| BillingAPI   | `Withdraw(args)`                      | 发起提币     |
-| BillingAPI   | `WithdrawList(requestIDs)`            | 获取提币记录 |
-| BillingAPI   | `SyncWithdrawList(maxID)`             | 同步提币记录 |
-| BillingAPI   | `DepositList(ids)`                    | 获取充值记录 |
-| BillingAPI   | `SyncDepositList(maxID)`              | 同步充值记录 |
-| BillingAPI   | `MinerFeeList(ids)`                   | 获取矿工费记录 |
-| BillingAPI   | `SyncMinerFeeList(maxID)`             | 同步矿工费记录 |
-| CoinAPI      | `GetCoinList()`                       | 获取币种列表 |
-| TransferAPI  | `AccountTransfer(args)`               | 内部转账     |
-| TransferAPI  | `GetAccountTransferList(requestIDs)`  | 获取转账记录 |
-| TransferAPI  | `SyncAccountTransferList(maxID)`      | 同步转账记录 |
-| AsyncNotifyAPI | `NotifyRequest(req)`                | 解密异步通知 |
+| API 类         | 方法                                  | 说明             |
+| -------------- | ------------------------------------- | ---------------- |
+| UserAPI        | `RegisterMobileUser(country, mobile)` | 手机注册         |
+| UserAPI        | `RegisterEmailUser(email)`            | 邮箱注册         |
+| UserAPI        | `GetMobileUser(country, mobile)`      | 根据手机获取用户 |
+| UserAPI        | `GetEmailUser(email)`                 | 根据邮箱获取用户 |
+| UserAPI        | `SyncUserList(maxID)`                 | 同步用户列表     |
+| AccountAPI     | `GetUserAccount(uid, symbol)`         | 获取账户余额     |
+| AccountAPI     | `GetUserAddress(uid, symbol)`         | 获取充值地址     |
+| AccountAPI     | `GetCompanyAccount(symbol)`           | 获取商户账户     |
+| AccountAPI     | `GetUserAddressInfo(address)`         | 获取地址信息     |
+| AccountAPI     | `SyncUserAddressList(maxID)`          | 同步地址列表     |
+| BillingAPI     | `Withdraw(args)`                      | 发起提币         |
+| BillingAPI     | `WithdrawList(requestIDs)`            | 获取提币记录     |
+| BillingAPI     | `SyncWithdrawList(maxID)`             | 同步提币记录     |
+| BillingAPI     | `DepositList(ids)`                    | 获取充值记录     |
+| BillingAPI     | `SyncDepositList(maxID)`              | 同步充值记录     |
+| BillingAPI     | `MinerFeeList(ids)`                   | 获取矿工费记录   |
+| BillingAPI     | `SyncMinerFeeList(maxID)`             | 同步矿工费记录   |
+| CoinAPI        | `GetCoinList()`                       | 获取币种列表     |
+| TransferAPI    | `AccountTransfer(args)`               | 内部转账         |
+| TransferAPI    | `GetAccountTransferList(requestIDs)`  | 获取转账记录     |
+| TransferAPI    | `SyncAccountTransferList(maxID)`      | 同步转账记录     |
+| AsyncNotifyAPI | `NotifyRequest(req)`                  | 解密异步通知     |
 
 ### MPC API
 
-| API 类           | 方法                                      | 说明             |
-| ---------------- | ----------------------------------------- | ---------------- |
-| WalletAPI        | `CreateWallet(name, status)`              | 创建钱包         |
-| WalletAPI        | `CreateWalletAddress(walletID, symbol)`   | 创建地址         |
-| WalletAPI        | `QueryWalletAddress(args)`                | 查询钱包地址     |
-| WalletAPI        | `GetWalletAssets(walletID, symbol)`       | 获取钱包资产     |
-| WalletAPI        | `ChangeWalletShowStatus(ids, status)`     | 修改钱包显示状态 |
-| WalletAPI        | `WalletAddressInfo(address, memo)`        | 获取地址信息     |
-| DepositAPI       | `GetDepositRecords(ids)`                  | 获取充值记录     |
-| DepositAPI       | `SyncDepositRecords(maxID)`               | 同步充值记录     |
-| WithdrawAPI      | `Withdraw(req, needSign)`                 | 发起提币         |
-| WithdrawAPI      | `GetWithdrawRecords(requestIDs)`          | 获取提币记录     |
-| WithdrawAPI      | `SyncWithdrawRecords(maxID)`              | 同步提币记录     |
-| Web3API          | `CreateWeb3Trans(req, needSign)`          | 创建 Web3 交易   |
-| Web3API          | `AccelerationWeb3Trans(args)`             | 加速 Web3 交易   |
-| Web3API          | `GetWeb3Records(requestIDs)`              | 获取 Web3 记录   |
-| Web3API          | `SyncWeb3Records(maxID)`                  | 同步 Web3 记录   |
-| AutoSweepAPI     | `AutoCollectSubWallets(ids, symbol)`      | 自动归集         |
-| AutoSweepAPI     | `SetAutoCollectSymbol(args)`              | 设置自动归集币种 |
-| AutoSweepAPI     | `SyncAutoCollectRecords(maxID)`           | 同步归集记录     |
-| WorkSpaceAPI     | `GetSupportMainChain()`                   | 获取支持的主链   |
-| WorkSpaceAPI     | `GetCoinDetails(args)`                    | 获取币种详情     |
-| WorkSpaceAPI     | `GetLastBlockHeight(mainChainSymbol)`     | 获取最新区块高度 |
-| TronResourceAPI  | `CreateTronDelegate(args)`                | 创建 TRON 代理   |
-| TronResourceAPI  | `GetBuyResourceRecords(requestIDs)`       | 获取资源购买记录 |
-| TronResourceAPI  | `SyncBuyResourceRecords(maxID)`           | 同步资源购买记录 |
-| NotifyAPI        | `NotifyRequest(req)`                      | 解密异步通知     |
+| API 类          | 方法                                    | 说明             |
+| --------------- | --------------------------------------- | ---------------- |
+| WalletAPI       | `CreateWallet(name, status)`            | 创建钱包         |
+| WalletAPI       | `CreateWalletAddress(walletID, symbol)` | 创建地址         |
+| WalletAPI       | `QueryWalletAddress(args)`              | 查询钱包地址     |
+| WalletAPI       | `GetWalletAssets(walletID, symbol)`     | 获取钱包资产     |
+| WalletAPI       | `ChangeWalletShowStatus(ids, status)`   | 修改钱包显示状态 |
+| WalletAPI       | `WalletAddressInfo(address, memo)`      | 获取地址信息     |
+| DepositAPI      | `GetDepositRecords(ids)`                | 获取充值记录     |
+| DepositAPI      | `SyncDepositRecords(maxID)`             | 同步充值记录     |
+| WithdrawAPI     | `Withdraw(req, needSign)`               | 发起提币         |
+| WithdrawAPI     | `GetWithdrawRecords(requestIDs)`        | 获取提币记录     |
+| WithdrawAPI     | `SyncWithdrawRecords(maxID)`            | 同步提币记录     |
+| Web3API         | `CreateWeb3Trans(req, needSign)`        | 创建 Web3 交易   |
+| Web3API         | `AccelerationWeb3Trans(args)`           | 加速 Web3 交易   |
+| Web3API         | `GetWeb3Records(requestIDs)`            | 获取 Web3 记录   |
+| Web3API         | `SyncWeb3Records(maxID)`                | 同步 Web3 记录   |
+| AutoSweepAPI    | `AutoCollectSubWallets(ids, symbol)`    | 自动归集         |
+| AutoSweepAPI    | `SetAutoCollectSymbol(args)`            | 设置自动归集币种 |
+| AutoSweepAPI    | `SyncAutoCollectRecords(maxID)`         | 同步归集记录     |
+| WorkSpaceAPI    | `GetSupportMainChain()`                 | 获取支持的主链   |
+| WorkSpaceAPI    | `GetCoinDetails(args)`                  | 获取币种详情     |
+| WorkSpaceAPI    | `GetLastBlockHeight(mainChainSymbol)`   | 获取最新区块高度 |
+| TronResourceAPI | `CreateTronDelegate(args)`              | 创建 TRON 代理   |
+| TronResourceAPI | `GetBuyResourceRecords(requestIDs)`     | 获取资源购买记录 |
+| TronResourceAPI | `SyncBuyResourceRecords(maxID)`         | 同步资源购买记录 |
+| NotifyAPI       | `NotifyRequest(req)`                    | 解密异步通知     |
 
 ## 📋 类型定义
 
@@ -294,6 +294,14 @@ type Web3TransRequest struct {
     GasLimit            int64           `json:"gas_limit"`
     InputData           string          `json:"input_data"`
     TransType           string          `json:"trans_type"`
+}
+
+// Web3 交易加速参数
+// 文档: https://custodydocs-en.chainup.com/api-references/mpc-apis/apis/web3/web3-pending
+type Web3AccelerationArgs struct {
+    TransID  int    `json:"trans_id"`   // Web3 交易 ID（必填）
+    GasPrice string `json:"gas_price"`  // Gas 费用，单位：Gwei（必填）
+    GasLimit string `json:"gas_limit"`  // Gas 限制（必填）
 }
 
 // 钱包显示状态
