@@ -256,6 +256,7 @@ type WalletAddressInfo struct {
 	WalletID           int64  `json:"sub_wallet_id"`
 	AddrType           int    `json:"addr_type"`
 	MergeAddressSymbol string `json:"merge_address_symbol"`
+	Memo               string `json:"memo"`
 }
 
 // WalletAddressInfoResult represents wallet address info response.
