@@ -77,7 +77,6 @@ type UserAddress struct {
 	UID     FlexInt `json:"uid"`
 	Address string  `json:"address"`
 	Symbol  string  `json:"symbol"`
-	Memo    string  `json:"memo,omitempty"`
 }
 
 // UserAddressResult represents user address response.
