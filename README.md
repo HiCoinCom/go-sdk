@@ -20,7 +20,7 @@ ChainUp Custody 官方 Go SDK - 为数字资产托管提供完整的解决方案
 ## 📦 安装
 
 ```bash
-go get chainup.com/go-sdk
+参考https://github.com/HiCoinCom/go-sdk-demo
 ```
 
 ## 🚀 快速开始
